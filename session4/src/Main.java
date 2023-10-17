@@ -234,5 +234,8 @@ public class Main {
             // this will be printed as 's' still points to the Heap Space.
             System.out.println("s and s4 are not equal.");
         }
+
+
+        System.out.println();
     }
 }
