@@ -5,7 +5,6 @@ import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.models.dtos.ResponsePayload;
 import com.example.demo.models.dtos.UserDTO;
 import com.example.demo.services.UserService;
-import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +27,8 @@ public class UserController {
     // try-catch mechanism, so we control the answer to the client.
     @GetMapping("/{id}")
     public ResponseEntity<ResponsePayload> getUserById(@PathVariable("id") Long id) {
-        try {
-            return ResponseBuilderHelper.buildResponsePayload(userService.getUserById(id),
-                    HttpStatus.FOUND);
-        } catch (UserNotFoundException e) {
-            return ResponseBuilderHelper.buildResponsePayload(String.format("User with id %d not found!", id),
-                    HttpStatus.NOT_FOUND);
-        }
+        return ResponseBuilderHelper.buildResponsePayload(userService.getUserById(id),
+                    HttpStatus.OK);
     }
 
     // PostMapping to save a user.
